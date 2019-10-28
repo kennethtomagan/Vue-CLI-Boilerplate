@@ -9,7 +9,7 @@ export default [
         path: '/login',
         component: Login,
         name: 'auth.login',
-        meta: { auth: false },
+        // meta: { auth: false },
 
     },
     {

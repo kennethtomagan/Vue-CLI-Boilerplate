@@ -2,12 +2,13 @@ import Vue from 'vue'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import router from './router'
-import moment from "moment";
 
 Vue.router = router
+
 Vue.use(VueAxios, axios);
 
 Vue.axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+
 Vue.use(require('@websanova/vue-auth'), {
     auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
     http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),

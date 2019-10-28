@@ -9,12 +9,22 @@
                 <div class="content">
                     <div class="field">
                         <div class="control">
-                            <b-input type="email" placeholder="EMAIL" autofocus></b-input>
+                            <b-input
+                                type="email"
+                                v-model="data.email"
+                                placeholder="EMAIL"
+                                autofocus
+                            ></b-input>
                         </div>
                     </div>
 
                     <b-field>
-                        <b-input placeholder="PASSWORD" type="password" password-reveal></b-input>
+                        <b-input
+                            placeholder="PASSWORD"
+                            v-model="data.password"
+                            type="password"
+                            password-reveal
+                        ></b-input>
                     </b-field>
 
                     <nav class="level">
@@ -32,7 +42,7 @@
                             <div class="level-item">
                                 <div class="field is-grouped">
                                     <p class="control">
-                                        <button class="button is-dark">LOGIN</button>
+                                        <button class="button is-dark" @click="submit">LOGIN</button>
                                     </p>
                                 </div>
                             </div>
@@ -45,5 +55,39 @@
 </template>
 
 <script>
-export default {};
+import Vue from "vue";
+export default {
+    data() {
+        return {
+            data: {
+                email: null,
+                password: null
+            }
+        };
+    },
+    methods: {
+        submit() {
+            this.$auth.login({
+                method: "post",
+                authType: "bearer",
+                url: "auth/login",
+                data: { email: this.data.email, password: this.data.password },
+                rememberMe: true,
+                fetchUser: false,
+                success: response => {
+                    // resolve()
+                    Vue.auth.token(null, response.data.token);
+                    Vue.auth.user(response.data.data);
+                    this.$store.commit("SET_USER", response.data.data);
+                    this.$router.push({
+                        name: "home"
+                    });
+                },
+                error: errors => {
+                    console.log(errors);
+                }
+            });
+        }
+    }
+};
 </script>
