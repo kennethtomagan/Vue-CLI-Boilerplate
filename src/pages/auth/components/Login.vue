@@ -1,8 +1,10 @@
 <template>
     <div class="column is-4 is-offset-4 m-t-xxl">
+        <errors-message/>
+
         <div class="card">
             <header class="card-header" style="background-color: #f5f5f5">
-                <h2 class="card-header-title">Login</h2>
+                <h2 class="card-header-title">Login {{ $auth.check() }}</h2>
             </header>
 
             <div class="card-content">
@@ -80,11 +82,11 @@ export default {
                     Vue.auth.user(response.data.data);
                     this.$store.commit("SET_USER", response.data.data);
                     this.$router.push({
-                        name: "home"
+                        name: "profile"
                     });
                 },
                 error: errors => {
-                    console.log(errors);
+                    this.$store.commit("SET_ERRORS", errors.response.data);
                 }
             });
         }
