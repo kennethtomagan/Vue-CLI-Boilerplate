@@ -6,6 +6,9 @@ import router from './router'
 import './auth';
 import store from './store';
 
+import ErrorsMessage from '@/components/ErrorsMessage'
+
+Vue.component('ErrorsMessage', ErrorsMessage)
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios
