@@ -15,13 +15,34 @@
                 </a>
             </div>
 
-            <div class="navbar-end">
+            <div class="navbar-end" v-if="!$auth.check()">
                 <router-link :to="{ name: 'auth.login' }" class="navbar-item">Login</router-link>
                 <router-link :to="{ name: 'auth.register' }" class="navbar-item">Register</router-link>
+            </div>
+            <div class="navbar-end" v-else-if="$auth.check()">
+                <p class="navbar-item">{{ $auth.user().email}}</p>
+                <a @click.prevent="logout" class="navbar-item">Logout</a>
             </div>
         </div>
     </nav>
 </template>
 <script>
-export default {};
+import Vue from "vue";
+export default {
+    methods: {
+        logout() {
+            Vue.auth.logout({
+                makeRequest: false,
+                params: {},
+                url: "auth/logout",
+                success: function() {
+                    this.$auth.watch.authenticated = false;
+                    this.$auth.watch.loaded = false;
+                },
+                error: function() {},
+                redirect: { name: "auth.login" }
+            });
+        }
+    }
+};
 </script>

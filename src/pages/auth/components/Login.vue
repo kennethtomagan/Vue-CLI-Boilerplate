@@ -1,8 +1,8 @@
 <template>
     <div class="column is-4 is-offset-4 m-t-xxl">
         <errors-message/>
-
-        <div class="card">
+        <success-mesage/>
+        <div class="card m-t-sm">
             <header class="card-header" style="background-color: #f5f5f5">
                 <h2 class="card-header-title">Login {{ $auth.check() }}</h2>
             </header>
@@ -62,8 +62,8 @@ export default {
     data() {
         return {
             data: {
-                email: null,
-                password: null
+                email: "admin@admin.com",
+                password: 1234
             }
         };
     },
@@ -77,10 +77,10 @@ export default {
                 rememberMe: true,
                 fetchUser: false,
                 success: response => {
-                    // resolve()
                     Vue.auth.token(null, response.data.token);
                     Vue.auth.user(response.data.data);
-                    this.$store.commit("SET_USER", response.data.data);
+                    this.$store.commit("SET_ERRORS", null);
+                    this.$store.commit("SET_SUCCESS_MESSAGE", null);
                     this.$router.push({
                         name: "profile"
                     });
