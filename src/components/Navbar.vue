@@ -20,7 +20,11 @@
                 <router-link :to="{ name: 'auth.register' }" class="navbar-item">Register</router-link>
             </div>
             <div class="navbar-end" v-else-if="$auth.check()">
-                <p class="navbar-item">{{ $auth.user().email}}</p>
+                <router-link :to="{ name: 'profile' }" class="navbar-item">{{ $auth.user().email}}</router-link>
+                <router-link
+                    :to="{ name: 'profile.change_password' }"
+                    class="navbar-item"
+                >Change password</router-link>
                 <a @click.prevent="logout" class="navbar-item">Logout</a>
             </div>
         </div>
