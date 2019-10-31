@@ -7,8 +7,10 @@ import './auth';
 import store from './store';
 
 import ErrorsMessage from '@/components/ErrorsMessage'
+import SuccessMesage from '@/components/SuccessMesage'
 
 Vue.component('ErrorsMessage', ErrorsMessage)
+Vue.component('SuccessMesage', SuccessMesage)
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios

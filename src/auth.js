@@ -15,6 +15,7 @@ Vue.use(require('@websanova/vue-auth'), {
     router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
     fetchData: { url: `profile`, method: 'GET', enabled: true, authType: 'bearer' },
     refreshData: { url: `profile`, method: 'GET', enabled: true, interval: 30, authType: 'bearer' },
-    authRedirect: { path: '/profile' },
+    authRedirect: { path: '/' },
+    loginData: { redirect: '/profile' }
     // notFoundRedirect: { path: '/' },
 })
