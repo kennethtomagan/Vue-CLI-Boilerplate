@@ -1,7 +1,10 @@
 <template>
     <div class="column is-4 is-offset-4 m-t-xxl">
+        <!-- Error Messages -->
         <errors-message/>
+        <!-- Success Message -->
         <success-mesage/>
+
         <div class="card m-t-sm">
             <header class="card-header" style="background-color: #f5f5f5">
                 <h2 class="card-header-title">Login {{ $auth.check() }}</h2>
@@ -67,8 +70,18 @@ export default {
             }
         };
     },
+    beforeDestroy(){
+        this.$store.commit("SET_ERRORS", null);
+        this.$store.commit("SET_LOADING", false);
+        this.$store.commit("SET_SUCCESS_MESSAGE",null);
+    },
     methods: {
         submit() {
+
+            this.$store.commit("SET_ERRORS", null);
+            this.$store.commit("SET_SUCCESS_MESSAGE",null);
+
+            this.$store.commit("SET_LOADING", true);
             this.$auth.login({
                 method: "post",
                 authType: "bearer",
@@ -80,12 +93,13 @@ export default {
                     Vue.auth.token(null, response.data.token);
                     Vue.auth.user(response.data.data);
                     this.$store.commit("SET_ERRORS", null);
-                    this.$store.commit("SET_SUCCESS_MESSAGE", null);
+                    this.$store.commit("SET_LOADING", false);
                     this.$router.push({
                         name: "profile"
                     });
                 },
                 error: errors => {
+                    this.$store.commit("SET_LOADING", false);
                     this.$store.commit("SET_ERRORS", errors.response.data);
                 }
             });
