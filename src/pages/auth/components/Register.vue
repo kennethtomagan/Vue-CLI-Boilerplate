@@ -1,5 +1,6 @@
 <template>
     <div class="column is-6 is-offset-3 m-t-xxl">
+        <!-- Error Messages -->
         <errors-message/>
 
         <div class="card m-t-sm">
