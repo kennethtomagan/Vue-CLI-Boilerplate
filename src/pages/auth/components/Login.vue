@@ -95,7 +95,7 @@ export default {
                     this.$store.commit("SET_ERRORS", null);
                     this.$store.commit("SET_LOADING", false);
                     this.$router.push({
-                        name: "profile"
+                        name: "home"
                     });
                 },
                 error: errors => {
