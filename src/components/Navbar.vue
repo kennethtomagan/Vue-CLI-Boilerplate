@@ -2,6 +2,9 @@
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
+               <router-link :to="{ name: 'home' }" class="navbar-item">
+                    <b>Vue CLI </b>
+                </router-link>
                 <a
                     role="button"
                     class="navbar-burger burger"
