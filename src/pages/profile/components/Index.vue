@@ -60,10 +60,6 @@ export default {
             }
         }
     },
-    beforeDestroy() {
-        this.$store.commit("SET_SUCCESS_MESSAGE", null);
-        this.$store.commit("SET_ERRORS", null);
-    },
     methods: {
         updateProfile() {
             this.loading = true;
@@ -76,11 +72,6 @@ export default {
                         "SET_SUCCESS_MESSAGE",
                         "Profile successfuly updated!"
                     );
-                })
-                .catch(errors => {
-                    this.loading = false;
-
-                    this.$store.commit("SET_ERRORS", errors.response.data);
                 });
         }
     }

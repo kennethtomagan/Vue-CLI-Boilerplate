@@ -77,10 +77,6 @@ export default {
             }
         }
     },
-    beforeDestroy() {
-        this.$store.commit("SET_SUCCESS_MESSAGE", null);
-        this.$store.commit("SET_ERRORS", null);
-    },
     methods: {
         updatePassword() {
             this.loading = true;
@@ -95,10 +91,6 @@ export default {
                         "Password successfuly changed!"
                     );
                     this.clearfFields();
-                })
-                .catch(errors => {
-                    this.loading = false;
-                    this.$store.commit("SET_ERRORS", errors.response.data);
                 });
         },
         clearfFields() {

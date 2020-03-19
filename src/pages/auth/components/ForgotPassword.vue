@@ -47,10 +47,6 @@ export default {
                     this.loading = false;
                     this.data.email = null;
                     this.$router.push({ name: "auth.login" });
-                })
-                .catch(errors => {
-                    this.$store.commit("SET_ERRORS", errors.response.data);
-                    this.loading = false
                 });
         }
     }

@@ -13,6 +13,8 @@ const router = new Router({
 
 router.afterEach(() => {
     store.commit("SET_ERRORS", null);
+    store.commit("SET_LOADING", false);
+    store.commit("SET_SUCCESS_MESSAGE", null);
 });
 
 

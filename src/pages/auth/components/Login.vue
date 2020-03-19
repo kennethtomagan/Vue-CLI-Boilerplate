@@ -70,17 +70,8 @@ export default {
             }
         };
     },
-    beforeDestroy(){
-        this.$store.commit("SET_ERRORS", null);
-        this.$store.commit("SET_LOADING", false);
-        this.$store.commit("SET_SUCCESS_MESSAGE",null);
-    },
     methods: {
         submit() {
-
-            this.$store.commit("SET_ERRORS", null);
-            this.$store.commit("SET_SUCCESS_MESSAGE",null);
-
             this.$store.commit("SET_LOADING", true);
             this.$auth.login({
                 method: "post",
@@ -92,16 +83,10 @@ export default {
                 success: response => {
                     Vue.auth.token(null, response.data.token);
                     Vue.auth.user(response.data.data);
-                    this.$store.commit("SET_ERRORS", null);
-                    this.$store.commit("SET_LOADING", false);
                     this.$router.push({
                         name: "home"
                     });
                 },
-                error: errors => {
-                    this.$store.commit("SET_LOADING", false);
-                    this.$store.commit("SET_ERRORS", errors.response.data);
-                }
             });
         }
     }

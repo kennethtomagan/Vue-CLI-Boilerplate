@@ -68,9 +68,6 @@ export default {
                         "Successfully registered"
                     );
                     this.$router.push({ name: "auth.login" });
-                })
-                .catch(errors => {
-                    this.$store.commit("SET_ERRORS", errors.response.data);
                 });
         }
     }

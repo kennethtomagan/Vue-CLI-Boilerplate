@@ -11,6 +11,10 @@ import SuccessMesage from '@/components/SuccessMesage'
 
 Vue.component('ErrorsMessage', ErrorsMessage)
 Vue.component('SuccessMesage', SuccessMesage)
+
+import interceptorsSetup from './interceptors';
+interceptorsSetup();
+
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios

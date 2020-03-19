@@ -58,7 +58,7 @@ export default {
     },
     methods:{
         submit(){
-            this.loading = true
+            this.$store.commit("SET_LOADING", true);
             this.$axios
                 .post("/auth/reset", this.data)
                 .then(() => {
@@ -72,11 +72,8 @@ export default {
                     this.data.password = null;
                     this.data.password_confirmation = null;
                     this.$router.push({ name: "auth.login" });
-                })
-                .catch(errors => {
-                    this.$store.commit("SET_ERRORS", errors.response.data);
-                    this.loading = false
                 });
+
         }
     }
 };
